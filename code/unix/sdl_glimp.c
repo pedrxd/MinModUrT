@@ -85,7 +85,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #ifdef MACOS_X
 #include <IOKit/hidsystem/IOHIDLib.h>
 #include <IOKit/hidsystem/IOHIDParameter.h>
-#include <drivers/event_status_driver.h>
+#include "osx/event_status_driver.h"
 typedef CGLContextObj QGLContext;
 #define GLimp_GetCurrentContext() CGLGetCurrentContext()
 #define GLimp_SetCurrentContext(ctx) CGLSetCurrentContext(ctx)
