@@ -341,17 +341,17 @@ ifeq ($(PLATFORM),darwin)
     USE_OPENAL_DLOPEN=1
   else
   ifeq ($(BUILD_MACOSX_UB),i386)
-    CC=/Developer/usr/bin/gcc-4.2 # i686-apple-darwin10-gcc-4.2.1 (GCC) 4.2.1 (Apple Inc. build 5666) (dot 3) - from XCode 3.2.6, hacked install on a 10.7.4 OSX
+    CC=/usr/local/Cellar/gcc48/4.8.2/bin/gcc-4.8
     BASE_CFLAGS += -arch i386 -DSMP \
-      -mmacosx-version-min=10.5 -DMAC_OS_X_VERSION_MIN_REQUIRED=1050 \
+      -mmacosx-version-min=10.8 -DMAC_OS_X_VERSION_MIN_REQUIRED=1080 \
       -nostdinc \
-      -F/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks \
-      -I/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin10/4.2.1/include \
-      -isystem /Developer/SDKs/MacOSX10.5.sdk/usr/include
-    LDFLAGS = -arch i386 -mmacosx-version-min=10.5 \
-      -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin10/4.2.1 \
-      -F/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks \
-      -Wl,-syslibroot,/Developer/SDKs/MacOSX10.5.sdk
+      -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks \
+      -I/usr/local/Cellar/gcc48/4.8.2/gcc/lib/gcc/x86_64-apple-darwin13.0.0/4.8.2/include \
+      -isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/usr/include
+    LDFLAGS = -arch i386 -mmacosx-version-min=10.8 \
+      -L/usr/local/Cellar/gcc48/4.8.2/gcc/lib/gcc/x86_64-apple-darwin13.0.0/4.8.2/i386 \
+      -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks \
+      -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
     ARCH=i386
     BUILD_SERVER=0
   else
