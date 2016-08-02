@@ -63,6 +63,11 @@ cvar_t  *sv_tellprefix;
 cvar_t  *sv_sayprefix;
 cvar_t 	*sv_demofolder;				//@Barbatos - the name of the folder that contains server-side demos
 
+cvar_t  *sv_infiniteStamina;
+cvar_t  *sv_infiniteWallJumps;
+cvar_t  *sv_nofallDamage;
+
+cvar_t  *sv_colourNames;
 //@Barbatos
 #ifdef USE_AUTH
 cvar_t	*sv_authServerIP;

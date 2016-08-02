@@ -396,6 +396,9 @@ intptr_t SV_GameSystemCalls( intptr_t *args ) {
 		return SV_EntityContact( VMA(1), VMA(2), VMA(3), /*int capsule*/ qtrue );
 	case G_TRACE:
 		SV_Trace( VMA(1), VMA(2), VMA(3), VMA(4), VMA(5), args[6], args[7], /*int capsule*/ qfalse );
+                if(((trace_t*)(VMA(1)))->entityNum > sv_maxclients->integer && sv_nofallDamage->integer){
+			((trace_t*)(VMA(1)))->surfaceFlags |= SURF_NODAMAGE;
+		}
 		return 0;
 	case G_TRACECAPSULE:
 		SV_Trace( VMA(1), VMA(2), VMA(3), VMA(4), VMA(5), args[6], args[7], /*int capsule*/ qtrue );
