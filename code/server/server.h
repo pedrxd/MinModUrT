@@ -113,6 +113,21 @@ typedef struct netchan_buffer_s {
 	struct netchan_buffer_s *next;
 } netchan_buffer_t;
 
+#define MAX_NETNAME 36
+typedef struct
+{
+	int	connected;
+	usercmd_t	cmd;
+	qboolean unknow1;
+	qboolean unknow2;
+	char		netname[MAX_NETNAME];
+}clientPersistant_t;
+typedef struct gclient_s
+{
+	playerState_t ps;
+	clientPersistant_t pers;
+}gclient_t;
+
 typedef struct client_s {
 	clientState_t	state;
 	char			userinfo[MAX_INFO_STRING];		// name, etc
@@ -178,6 +193,8 @@ typedef struct client_s {
 	int				oldServerTime;
 	qboolean			csUpdated[MAX_CONFIGSTRINGS+1];	
 	int             numcmds;    // number of client commands so far (in this time period), for sv_floodprotect
+        
+        char            colourName[MAX_NAME_LENGTH];
 } client_t;
 
 //=============================================================================
@@ -306,6 +323,11 @@ extern  cvar_t  *sv_sayprefix;
 extern  cvar_t  *sv_tellprefix;
 extern  cvar_t  *sv_demofolder;
 
+extern  cvar_t  *sv_infiniteStamina;
+extern  cvar_t  *sv_infiniteWallJumps;
+extern  cvar_t  *sv_nofallDamage;
+
+extern  cvar_t  *sv_colourNames;
 #ifdef USE_AUTH
 extern	cvar_t	*sv_authServerIP;
 extern  cvar_t  *sv_auth_engine;

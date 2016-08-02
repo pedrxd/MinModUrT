@@ -496,6 +496,17 @@ static void SV_BuildClientSnapshot( client_t *client ) {
 
 	// grab the current playerState_t
 	ps = SV_GameClientNum( client - svs.clients );
+        
+        //InfiniteStamina MinMod
+        if(sv_infiniteStamina->integer)
+        {
+            ps->stats[9] = ps->stats[0] * 300;
+        }
+        if(sv_infiniteWallJumps->integer)
+        {
+            ps->generic1 = 0;
+        }
+        
 	frame->ps = *ps;
 
 	// never send client's own entity, because it can
