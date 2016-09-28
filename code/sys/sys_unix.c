@@ -544,4 +544,3 @@ void Sys_PlatformInit( void )
 	stdinIsATTY = isatty( STDIN_FILENO ) &&
 		!( term && ( !strcmp( term, "raw" ) || !strcmp( term, "dumb" ) ) );
 }
-
