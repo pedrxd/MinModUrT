@@ -313,7 +313,7 @@ ifeq ($(PLATFORM),linux)
 
   ifeq ($(ARCH),i386)
     # linux32 make ...
-    BASE_CFLAGS += -m32
+    BASE_CFLAGS += -mmmx -msse2 -m32
     LDFLAGS+=-m32
   endif
 
