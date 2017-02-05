@@ -540,7 +540,7 @@ int SV_MakeCompressedPureList( void )
     if (ol==sizeof(tmp)-1) {
      tmp[ol]=0;
      if (csnr==PURE_COMPRESS_NUMCS) {
-      Com_Printf(err_chunk);
+      Com_Printf("%s", err_chunk);
       return 1;
      }
      SV_SetConfigstring( MAX_CONFIGSTRINGS-PURE_COMPRESS_NUMCS+csnr, tmp);
@@ -555,7 +555,7 @@ int SV_MakeCompressedPureList( void )
    if (ol==sizeof(tmp)-1) {
     tmp[ol]=0;
     if (csnr==PURE_COMPRESS_NUMCS) {
-     Com_Printf(err_chunk);
+     Com_Printf("%s", err_chunk);
      return 1;
     }
     SV_SetConfigstring( MAX_CONFIGSTRINGS-PURE_COMPRESS_NUMCS+csnr, tmp);
@@ -574,7 +574,7 @@ int SV_MakeCompressedPureList( void )
    if (ol==sizeof(tmp)-1) {
     tmp[ol]=0;
     if (csnr==PURE_COMPRESS_NUMCS) {
-     Com_Printf(err_chunk);
+     Com_Printf("%s", err_chunk);
      return 1;
     }
     SV_SetConfigstring( MAX_CONFIGSTRINGS-PURE_COMPRESS_NUMCS+csnr, tmp);
@@ -589,7 +589,7 @@ int SV_MakeCompressedPureList( void )
  }
  if (ol) {
   if (csnr==PURE_COMPRESS_NUMCS) {
-   Com_Printf(err_chunk);
+   Com_Printf("%s", err_chunk);
    return 1;
   }
   tmp[ol]=0;

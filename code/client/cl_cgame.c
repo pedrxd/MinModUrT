@@ -296,7 +296,7 @@ rescan:
 		// https://zerowing.idsoftware.com/bugzilla/show_bug.cgi?id=552
 		// allow server to indicate why they were disconnected
 		if ( argc >= 2 )
-			Com_Error (ERR_SERVERDISCONNECT, va( "Server Disconnected - %s", Cmd_Argv( 1 ) ) );
+			Com_Error (ERR_SERVERDISCONNECT, "Server Disconnected - %s", Cmd_Argv( 1 ));
 		else
 			Com_Error (ERR_SERVERDISCONNECT,"Server disconnected\n");
 	}
@@ -826,7 +826,7 @@ or bursted delayed packets.
 #define	RESET_TIME	500
 
 void CL_AdjustTimeDelta( void ) {
-	int		resetTime;
+	//int		resetTime;
 	int		newDelta;
 	int		deltaDelta;
 
@@ -838,12 +838,13 @@ void CL_AdjustTimeDelta( void ) {
 	}
 
 	// if the current time is WAY off, just correct to the current value
+	/*
 	if ( com_sv_running->integer ) {
 		resetTime = 100;
 	} else {
 		resetTime = RESET_TIME;
 	}
-
+	*/
 	newDelta = cl.snap.serverTime - cls.realtime;
 	deltaDelta = abs( newDelta - cl.serverTimeDelta );
 

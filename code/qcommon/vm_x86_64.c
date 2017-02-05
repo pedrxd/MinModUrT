@@ -1064,7 +1064,6 @@ static char* memData;
 #endif
 
 int	VM_CallCompiled( vm_t *vm, int *args ) {
-	int		programCounter;
 	int		programStack;
 	int		stackOnEntry;
 	byte	*image;
@@ -1091,8 +1090,6 @@ int	VM_CallCompiled( vm_t *vm, int *args ) {
 #ifdef DEBUG_VM
 	memData = (char*)image;
 #endif
-
-	programCounter = 0;
 
 	programStack -= 48;
 

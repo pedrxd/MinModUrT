@@ -3154,7 +3154,7 @@ CL_ServerInfoPacket
 void CL_ServerInfoPacket( netadr_t from, msg_t *msg ) {
 	int		i, type;
 	char	info[MAX_INFO_STRING];
-	char*	str;
+  //char*	str;
 	char	*infoString;
 	int		prot;
 
@@ -3185,12 +3185,12 @@ void CL_ServerInfoPacket( netadr_t from, msg_t *msg ) {
 			{
 				case NA_BROADCAST:
 				case NA_IP:
-					str = "udp";
+					//str = "udp";
 					type = 1;
 					break;
 
 				default:
-					str = "???";
+					//str = "???";
 					type = 0;
 					break;
 			}
@@ -3555,7 +3555,7 @@ void CL_GlobalServers_f( void ) {
 		buffptr += sprintf( buffptr, " demo" );
 	}
 
-	NET_OutOfBandPrint( NS_SERVER, adr[adrNum], command );
+	NET_OutOfBandPrint( NS_SERVER, adr[adrNum], "%s", command );
 }
 
 

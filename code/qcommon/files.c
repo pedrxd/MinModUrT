@@ -1732,7 +1732,7 @@ static pack_t *FS_LoadZipFile( char *zipfile, const char *basename )
 			}
 
 			if (!alreadyForeign) {
-				Com_sprintf(foreignQVMNames[foreignQVMsFound], MAX_ZPATH, pack->pakBasename);
+				Com_sprintf(foreignQVMNames[foreignQVMsFound], MAX_ZPATH, "%s", pack->pakBasename);
 				foreignQVMsFound++;
 			}
 		}

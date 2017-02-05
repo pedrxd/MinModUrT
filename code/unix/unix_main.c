@@ -120,7 +120,6 @@ static int hist_current = -1, hist_count = 0;
 #define MEM_THRESHOLD 96*1024*1024
 
 #define MAX_CMD 1024
-static char exit_cmdline[MAX_CMD] = "";
 void Sys_DoStartProcess( char *cmdline );
 
 /*
@@ -528,7 +527,7 @@ void Sys_ConsoleInputInit( void )
               characters  EOF,  EOL,  EOL2, ERASE, KILL, REPRINT,
               STATUS, and WERASE, and buffers by lines.
      ISIG: when any of the characters  INTR,  QUIT,  SUSP,  or
-              DSUSP are received, generate the corresponding sig­
+              DSUSP are received, generate the corresponding sigï¿½
               nal
     */              
     tc.c_lflag &= ~(ECHO | ICANON);
@@ -1456,7 +1455,6 @@ void Sys_StartProcess( char *cmdline, qboolean doexit ) {
 
 	if ( doexit ) {
 		Com_DPrintf( "Sys_StartProcess %s (delaying to final exit)\n", cmdline );
-		Q_strncpyz( exit_cmdline, cmdline, MAX_CMD );
 		Cbuf_ExecuteText( EXEC_APPEND, "quit\n" );
 		return;
 	}
