@@ -1,8 +1,8 @@
 # MinMod for UrbanTerror
-**Four basic mods that must not miss on any urt server; infinite Stamina, no fall damage, colours names and infinite wall jumps**
+**The mods that must not miss on any urt server; infinite Stamina, no fall damage, colours names, infinite wall jumps and hide cmds**
 
 ## Cvar/Usage
-It contains all the original cvars and 4 more for control the mods added. All mods are enabled by default you can use the following commands for disable it (for enable just replace '0' with '1'):
+It contains all the original cvars and 5 more for control the mods added. All mods are enabled by default you can use the following commands for disable it (for enable just replace '0' with '1'):
 
  > set sv_infiniteStamina 0
 
@@ -11,6 +11,12 @@ It contains all the original cvars and 4 more for control the mods added. All mo
  > set sv_nofallDamage 0
 
  > set sv_colourNames 0
+ 
+ > set sv_hidecmds 0
+ 
+ *HideCmds have 3 modes -> 0: No mute nothing; 1: Mute all and who send can see msg; 2: Mute all and who send can't see msg.
+ 
+ The !pm command is allways muted.
 
 
 ## Installation

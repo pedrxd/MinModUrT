@@ -328,6 +328,9 @@ extern  cvar_t  *sv_infiniteWallJumps;
 extern  cvar_t  *sv_nofallDamage;
 
 extern  cvar_t  *sv_colourNames;
+
+extern  cvar_t  *sv_hideCmds;
+
 #ifdef USE_AUTH
 extern	cvar_t	*sv_authServerIP;
 extern  cvar_t  *sv_auth_engine;
@@ -338,6 +341,9 @@ extern  cvar_t  *sv_auth_engine;
 //
 // sv_main.c
 //
+void QDECL SV_LogPrintf(const char *fmt, ...);
+
+
 void SV_FinalMessage (char *message);
 void QDECL SV_SendServerCommand( client_t *cl, const char *fmt, ...);
 

@@ -25,9 +25,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 static void SV_CloseDownload( client_t *cl );
 
-
-
-
 char *SV_CleanName(char *name) {
 
 	static char cleaned[MAX_NAME_LENGTH];
@@ -52,8 +49,6 @@ char *SV_CleanName(char *name) {
 	cleaned[j] = 0;
 	return cleaned;
 }
-
-
 
 /*
 =================
@@ -1357,14 +1352,13 @@ void SV_UserinfoChanged( client_t *cl ) {
 
 }
 
-
 /*
 ==================
 SV_UpdateUserinfo_f
 ==================
 */
 void SV_UpdateUserinfo_f( client_t *cl ) {
-        gclient_t *gl;
+    gclient_t *gl;
 	if ( (sv_floodProtect->integer) && (cl->state >= CS_ACTIVE) && (svs.time < cl->nextReliableUserTime) ) {
 		Q_strncpyz( cl->userinfobuffer, Cmd_Argv(1), sizeof(cl->userinfobuffer) );
 		SV_SendServerCommand(cl, "print \"^7Command ^1delayed^7 due to sv_floodprotect.\"");
@@ -1375,6 +1369,7 @@ void SV_UpdateUserinfo_f( client_t *cl ) {
 	cl->nextReliableUserTime = svs.time + 5000;
 
 	Q_strncpyz( cl->userinfo, Cmd_Argv(1), sizeof(cl->userinfo) );
+
 
 	SV_UserinfoChanged( cl );
 	// call prog code to allow overrides
@@ -1415,9 +1410,11 @@ void SV_ExecuteClientCommand( client_t *cl, const char *s, qboolean clientOK ) {
 	int			charCount;
 	int			dollarCount;
 	int			i;
-	char		*arg;
+	char            *arg, *p;
 	qboolean 	bProcessed = qfalse;
 	qboolean 	exploitDetected = qfalse;
+	playerState_t *ps;
+
 	
 	Cmd_TokenizeString( s );
 
@@ -1434,11 +1431,30 @@ void SV_ExecuteClientCommand( client_t *cl, const char *s, qboolean clientOK ) {
 
 		// pass unknown strings to the game
 		if ((!u->name) && (sv.state == SS_GAME) && (cl->state == CS_ACTIVE)) {
+			ps = SV_GameClientNum(cl - svs.clients);
+
 			Cmd_Args_Sanitize();
 
 			argsFromOneMaxlen = -1;
 			if (Q_stricmp("say", Cmd_Argv(0)) == 0 || Q_stricmp("say_team", Cmd_Argv(0)) == 0) {
 				argsFromOneMaxlen = MAX_SAY_STRLEN;
+
+				p = Cmd_Argv(1);
+				while (*p == ' ') p++;
+				if (strncmp("!pm", (char *)p, 3) == 0)
+				{
+					SV_SendServerCommand(cl, "chat \"^9[pm] ^7%s: ^3%s\"", cl->colourName, Cmd_Args());
+							   SV_LogPrintf("say: %i %s: %s\n", ps->clientNum, cl->name, CopyString(Cmd_Args()));
+							   return;
+				}
+				if (((*p == '!') || (*p == '@') || (*p == '&') || (*p == '/')) && sv_hideCmds->integer)
+				{
+							   if(sv_hideCmds->integer == 1)
+								   SV_SendServerCommand(cl, "chat \"^9[pm] ^7%s: ^3%s\"", cl->colourName, Cmd_Args());
+							   SV_LogPrintf("say: %i %s: %s\n", ps->clientNum, cl->name, CopyString(Cmd_Args()));
+							   return;
+				}
+
 			}
 			else if (Q_stricmp("tell", Cmd_Argv(0)) == 0) {
 				// A command will look like "tell 12 hi" or "tell foo hi".  The "12"
