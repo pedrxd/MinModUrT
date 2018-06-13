@@ -70,6 +70,8 @@ cvar_t  *sv_nofallDamage;
 cvar_t  *sv_colourNames;
 
 cvar_t  *sv_hideCmds;
+
+cvar_t  *sv_disableScope;
 //@Barbatos
 #ifdef USE_AUTH
 cvar_t	*sv_authServerIP;

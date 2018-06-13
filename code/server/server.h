@@ -194,7 +194,8 @@ typedef struct client_s {
 	qboolean			csUpdated[MAX_CONFIGSTRINGS+1];	
 	int             numcmds;    // number of client commands so far (in this time period), for sv_floodprotect
         
-        char            colourName[MAX_NAME_LENGTH];
+	char            colourName[MAX_NAME_LENGTH];
+	char 			lastWeaponAfterScope; //For return to correct weapon after remove the zoom.
 } client_t;
 
 //=============================================================================
@@ -330,6 +331,8 @@ extern  cvar_t  *sv_nofallDamage;
 extern  cvar_t  *sv_colourNames;
 
 extern  cvar_t  *sv_hideCmds;
+
+extern  cvar_t  *sv_disableScope;
 
 #ifdef USE_AUTH
 extern	cvar_t	*sv_authServerIP;
