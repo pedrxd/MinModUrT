@@ -1603,7 +1603,7 @@ void SV_ClientThink (client_t *cl, usercmd_t *cmd) {
 		}else
 		{
 			//24576 is the flag for zoom3 that include zoom1 and zoom2
-			if(cmd->buttons&24576)
+			if(cmd->buttons&24576&&ps->weaponstate==WEAPON_READY)
 			{
 				cl->lastWeaponAfterScope = ps->weapon;
 				if(ps->weapon==15)
