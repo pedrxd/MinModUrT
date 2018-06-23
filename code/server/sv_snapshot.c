@@ -500,7 +500,7 @@ static void SV_BuildClientSnapshot( client_t *client ) {
         //InfiniteStamina MinMod
         if(sv_infiniteStamina->integer)
         {
-            ps->stats[9] = ps->stats[0] * 300;
+            ps->stats[0] = ps->stats[6] * 300;
         }
         if(sv_infiniteWallJumps->integer)
         {
