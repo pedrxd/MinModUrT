@@ -946,10 +946,9 @@ void SV_Init (void) {
         sv_infiniteStamina = Cvar_Get ("sv_infiniteStamina", "1", CVAR_ARCHIVE);
         sv_infiniteWallJumps = Cvar_Get ("sv_infiniteWallJumps", "1", CVAR_ARCHIVE);
         sv_nofallDamage = Cvar_Get("sv_nofallDamage", "1", CVAR_ARCHIVE);
-        
         sv_colourNames = Cvar_Get ("sv_colournames", "1", CVAR_ARCHIVE);
-        
         sv_hideCmds = Cvar_Get ("sv_hidecmds", "1", CVAR_ARCHIVE);
+        sv_disableScope = Cvar_Get("sv_disableScope","0",CVAR_ARCHIVE);
 	#ifdef USE_AUTH
 	sv_authServerIP = Cvar_Get("sv_authServerIP", "", CVAR_TEMP | CVAR_ROM);
 	sv_auth_engine = Cvar_Get("sv_auth_engine", "1", CVAR_ROM);

@@ -435,6 +435,9 @@ gotnewcl:
     Q_strncpyz(newcl->userinfo, userinfo, sizeof(newcl->userinfo));
     Com_sprintf(cl->colourName, MAX_NAME_LENGTH, "%s^7", SV_CleanName(Info_ValueForKey(newcl->userinfo, "name")));
 
+    //We set lastweaponNoscope to -1. When other values it will be set to ps->weapon
+	newcl->lastWeaponAfterScope = -1;
+
 
     // get the game a chance to reject this connection or modify the userinfo
     denied = VM_Call(gvm, GAME_CLIENT_CONNECT, clientNum, qtrue, qfalse); // firstTime = qtrue
@@ -1588,6 +1591,28 @@ void SV_ClientThink (client_t *cl, usercmd_t *cmd) {
 		return;		// may have been kicked during the last usercmd
 	}
 
+	playerState_t *ps;
+	ps = SV_GameClientNum(cl - svs.clients);
+
+	if(sv_disableScope->integer)
+	{
+		if(cl->lastWeaponAfterScope != -1 )
+		{
+			ps->weapon = cl->lastWeaponAfterScope;
+			cl->lastWeaponAfterScope = -1;
+		}else
+		{
+			//24576 is the flag for zoom3 that include zoom1 and zoom2
+			if(cmd->buttons&24576&&ps->weaponstate==WEAPON_READY)
+			{
+				cl->lastWeaponAfterScope = ps->weapon;
+				if(ps->weapon==15)
+					ps->weapon=14;
+				else
+					ps->weapon=15;
+			}
+		}
+	}
 	VM_Call( gvm, GAME_CLIENT_THINK, cl - svs.clients );
 }
 

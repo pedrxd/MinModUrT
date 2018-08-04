@@ -14,6 +14,8 @@ It contains all the original cvars and 5 more for control the mods added. All mo
  
  > set sv_hidecmds 0
  
+ > set sv_disableScope 0
+ 
  *HideCmds have 3 modes -> 0: No mute nothing; 1: Mute all and who send can see msg; 2: Mute all and who send can't see msg.
  
  The !pm command is allways muted.
