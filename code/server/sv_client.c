@@ -1620,6 +1620,16 @@ void SV_ClientThink (client_t *cl, usercmd_t *cmd) {
 	}
 
 	VM_Call( gvm, GAME_CLIENT_THINK, cl - svs.clients );
+
+	if(sv_infiniteStamina->integer)
+	{
+		ps->stats[0] = ps->stats[6] * 300;
+	}
+	if(sv_infiniteWallJumps->integer)
+	{
+		ps->generic1 = 0;
+	}
+
 }
 
 /*
