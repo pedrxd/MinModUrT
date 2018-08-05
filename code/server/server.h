@@ -327,12 +327,10 @@ extern  cvar_t  *sv_demofolder;
 extern  cvar_t  *sv_infiniteStamina;
 extern  cvar_t  *sv_infiniteWallJumps;
 extern  cvar_t  *sv_nofallDamage;
-
 extern  cvar_t  *sv_colourNames;
-
 extern  cvar_t  *sv_hideCmds;
-
 extern  cvar_t  *sv_disableScope;
+extern  cvar_t  *sv_disableKnife;
 
 #ifdef USE_AUTH
 extern	cvar_t	*sv_authServerIP;

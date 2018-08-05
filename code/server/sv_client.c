@@ -1613,6 +1613,12 @@ void SV_ClientThink (client_t *cl, usercmd_t *cmd) {
 			}
 		}
 	}
+	if(sv_disableKnife->integer)
+	{
+		//Knife allways is on position 0 and 15 should be a empty slot.
+		ps->powerups[0] = ps->powerups[15];
+	}
+
 	VM_Call( gvm, GAME_CLIENT_THINK, cl - svs.clients );
 }
 
