@@ -40,7 +40,7 @@ char *SV_CleanName(char *name) {
 		return cleaned;
 	}
 
-	for (i = 0; i < strlen(name); i++) {
+	for (i = 0; i < strlen(name) && j < MAX_NAME_LENGTH-1; i++) {
 		if (name[i] >= 39 && name[i] <= 126)
 			if(name[i] != ' ' || name[i] != '\\')
 				cleaned[j++] = name[i];
@@ -1377,8 +1377,8 @@ void SV_UpdateUserinfo_f( client_t *cl ) {
 	SV_UserinfoChanged( cl );
 	// call prog code to allow overrides
 	VM_Call( gvm, GAME_CLIENT_USERINFO_CHANGED, cl - svs.clients );
-        if (sv_colourNames->integer) 
-            Q_strncpyz(gl->pers.netname, cl->colourName, MAX_NETNAME);
+        if (sv_colourNames->integer)
+            Q_strncpyz(gl->pers.netname, cl->colourName, MAX_NAME_LENGTH);
 }
 
 typedef struct {
