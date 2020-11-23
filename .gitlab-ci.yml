@@ -1,4 +1,8 @@
+services:
+  - docker:dind
+
 build-64bits:
+  image: debian
   script:
     - apt-get update -qq && apt-get install -y -qq gcc make sdl1.2-dev
     - make
@@ -8,7 +12,6 @@ build-64bits:
       - build/release-linux-x86_64/Quake3-UrT.x86_64
 
 build-docker:
-  image: docker:19.03.1
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker build -t $CI_REGISTRY_IMAGE .
